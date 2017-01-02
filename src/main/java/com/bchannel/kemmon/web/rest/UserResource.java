@@ -1,17 +1,26 @@
 package com.bchannel.kemmon.web.rest;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
+import javax.inject.Inject;
+
 import com.bchannel.kemmon.config.Constants;
-import com.codahale.metrics.annotation.Timed;
 import com.bchannel.kemmon.domain.User;
 import com.bchannel.kemmon.repository.UserRepository;
 import com.bchannel.kemmon.repository.search.UserSearchRepository;
 import com.bchannel.kemmon.security.AuthoritiesConstants;
 import com.bchannel.kemmon.service.MailService;
 import com.bchannel.kemmon.service.UserService;
-import com.bchannel.kemmon.web.rest.vm.ManagedUserVM;
 import com.bchannel.kemmon.web.rest.util.HeaderUtil;
 import com.bchannel.kemmon.web.rest.util.PaginationUtil;
-import io.swagger.annotations.ApiParam;
+import com.bchannel.kemmon.web.rest.vm.ManagedUserVM;
+import com.codahale.metrics.annotation.Timed;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -20,16 +29,17 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.inject.Inject;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import io.swagger.annotations.ApiParam;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
  * REST controller for managing users.
@@ -132,7 +142,7 @@ public class UserResource {
         }
         userService.updateUser(managedUserVM.getId(), managedUserVM.getLogin(), managedUserVM.getFirstName(),
             managedUserVM.getLastName(), managedUserVM.getEmail(), managedUserVM.isActivated(),
-            managedUserVM.getLangKey(), managedUserVM.getAuthorities());
+            managedUserVM.getLangKey(), managedUserVM.getAuthorities(),managedUserVM.getUser_type());
 
         return ResponseEntity.ok()
             .headers(HeaderUtil.createAlert("A user is updated with identifier " + managedUserVM.getLogin(), managedUserVM.getLogin()))

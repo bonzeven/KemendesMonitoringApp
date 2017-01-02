@@ -1,7 +1,17 @@
 package com.bchannel.kemmon.service;
 
+import java.time.LocalDate;
+import java.time.ZonedDateTime;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
+import javax.inject.Inject;
+
 import com.bchannel.kemmon.domain.Authority;
 import com.bchannel.kemmon.domain.User;
+import com.bchannel.kemmon.domain.enumeration.EnumTypeUser;
 import com.bchannel.kemmon.repository.AuthorityRepository;
 import com.bchannel.kemmon.repository.PersistentTokenRepository;
 import com.bchannel.kemmon.repository.UserRepository;
@@ -10,17 +20,13 @@ import com.bchannel.kemmon.security.AuthoritiesConstants;
 import com.bchannel.kemmon.security.SecurityUtils;
 import com.bchannel.kemmon.service.util.RandomUtil;
 import com.bchannel.kemmon.web.rest.vm.ManagedUserVM;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.time.LocalDate;
-import java.time.ZonedDateTime;
-import javax.inject.Inject;
-import java.util.*;
 
 /**
  * Service class for managing users.
@@ -86,7 +92,7 @@ public class UserService {
     }
 
     public User createUser(String login, String password, String firstName, String lastName, String email,
-        String langKey) {
+        String langKey,EnumTypeUser userType) {
 
         User newUser = new User();
         Authority authority = authorityRepository.findOne(AuthoritiesConstants.USER);
@@ -105,6 +111,7 @@ public class UserService {
         newUser.setActivationKey(RandomUtil.generateActivationKey());
         authorities.add(authority);
         newUser.setAuthorities(authorities);
+        newUser.setUser_type(userType);
         userRepository.save(newUser);
         userSearchRepository.save(newUser);
         log.debug("Created Information for User: {}", newUser);
@@ -116,6 +123,7 @@ public class UserService {
         user.setLogin(managedUserVM.getLogin());
         user.setFirstName(managedUserVM.getFirstName());
         user.setLastName(managedUserVM.getLastName());
+        user.setUser_type(managedUserVM.getUser_type());
         user.setEmail(managedUserVM.getEmail());
         if (managedUserVM.getLangKey() == null) {
             user.setLangKey("en"); // default language
@@ -136,23 +144,24 @@ public class UserService {
         user.setActivated(true);
         userRepository.save(user);
         userSearchRepository.save(user);
-        log.debug("Created Information for User: {}", user);
+        log.debug("Created Information for User:: {}", user);
         return user;
     }
 
-    public void updateUser(String firstName, String lastName, String email, String langKey) {
+    public void updateUser(String firstName, String lastName, String email, String langKey, EnumTypeUser userType) {
         userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).ifPresent(user -> {
             user.setFirstName(firstName);
             user.setLastName(lastName);
             user.setEmail(email);
             user.setLangKey(langKey);
             userSearchRepository.save(user);
-            log.debug("Changed Information for User: {}", user);
+            user.setUser_type(userType);
+            log.debug("Changed Information for User:: {}", user);
         });
     }
 
     public void updateUser(Long id, String login, String firstName, String lastName, String email,
-        boolean activated, String langKey, Set<String> authorities) {
+        boolean activated, String langKey, Set<String> authorities,EnumTypeUser userType) {
 
         Optional.of(userRepository
             .findOne(id))
@@ -162,13 +171,14 @@ public class UserService {
                 user.setLastName(lastName);
                 user.setEmail(email);
                 user.setActivated(activated);
+                user.setUser_type(userType);
                 user.setLangKey(langKey);
                 Set<Authority> managedAuthorities = user.getAuthorities();
                 managedAuthorities.clear();
                 authorities.forEach(
                     authority -> managedAuthorities.add(authorityRepository.findOne(authority))
                 );
-                log.debug("Changed Information for User: {}", user);
+                log.debug("Changed Information for User:: :: {}", user);
             });
     }
 

@@ -1,22 +1,36 @@
 package com.bchannel.kemmon.domain;
 
-import com.bchannel.kemmon.config.Constants;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.validator.constraints.Email;
-
-import org.springframework.data.elasticsearch.annotations.Document;
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
-import java.time.ZonedDateTime;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import com.bchannel.kemmon.config.Constants;
+import com.bchannel.kemmon.domain.enumeration.EnumTypeUser;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.validator.constraints.Email;
+import org.springframework.data.elasticsearch.annotations.Document;
 
 /**
  * A user.
@@ -232,4 +246,22 @@ public class User extends AbstractAuditingEntity implements Serializable {
             ", activationKey='" + activationKey + '\'' +
             "}";
     }
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "user_type", nullable = false)
+    private EnumTypeUser user_type;
+
+    public EnumTypeUser getUser_type() {
+        return user_type;
+    }
+
+    public User user_type(EnumTypeUser user_type) {
+        this.user_type = user_type;
+        return this;
+    }
+
+    public void setUser_type(EnumTypeUser user_type) {
+        this.user_type = user_type;
+    }
+
 }

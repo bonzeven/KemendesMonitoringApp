@@ -1,15 +1,17 @@
 package com.bchannel.kemmon.service.dto;
 
-import com.bchannel.kemmon.config.Constants;
-
-import com.bchannel.kemmon.domain.Authority;
-import com.bchannel.kemmon.domain.User;
-
-import org.hibernate.validator.constraints.Email;
-
-import javax.validation.constraints.*;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import com.bchannel.kemmon.config.Constants;
+import com.bchannel.kemmon.domain.Authority;
+import com.bchannel.kemmon.domain.User;
+import com.bchannel.kemmon.domain.enumeration.EnumTypeUser;
+
+import org.hibernate.validator.constraints.Email;
 
 /**
  * A DTO representing a user, with his authorities.
@@ -44,11 +46,11 @@ public class UserDTO {
         this(user.getLogin(), user.getFirstName(), user.getLastName(),
             user.getEmail(), user.getActivated(), user.getLangKey(),
             user.getAuthorities().stream().map(Authority::getName)
-                .collect(Collectors.toSet()));
+                .collect(Collectors.toSet()),user.getUser_type());
     }
 
     public UserDTO(String login, String firstName, String lastName,
-        String email, boolean activated, String langKey, Set<String> authorities) {
+        String email, boolean activated, String langKey, Set<String> authorities,EnumTypeUser userType) {
 
         this.login = login;
         this.firstName = firstName;
@@ -57,6 +59,7 @@ public class UserDTO {
         this.activated = activated;
         this.langKey = langKey;
         this.authorities = authorities;
+        this.user_type = userType;
     }
 
     public String getLogin() {
@@ -99,4 +102,15 @@ public class UserDTO {
             ", authorities=" + authorities +
             "}";
     }
+
+    //add custom
+    private EnumTypeUser user_type;
+    public EnumTypeUser getUser_type() {
+        return user_type;
+    }
+
+    public void setUser_type(EnumTypeUser user_type) {
+        this.user_type = user_type;
+    }
+
 }

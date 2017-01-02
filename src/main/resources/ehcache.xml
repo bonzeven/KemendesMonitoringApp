@@ -20,5 +20,7 @@
 
     <cache alias="com.bchannel.kemmon.domain.User.persistentTokens" uses-template="simple"/>
 
+    <cache alias="com.bchannel.kemmon.domain.Dokumen" uses-template="simple"/>
+
     <!-- jhipster-needle-ehcache-add-entry -->
 </config>

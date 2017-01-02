@@ -1,5 +1,12 @@
 package com.bchannel.kemmon.web.rest;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
+
+import javax.inject.Inject;
+
 import com.bchannel.kemmon.KemmonApp;
 import com.bchannel.kemmon.domain.Authority;
 import com.bchannel.kemmon.domain.User;
@@ -10,6 +17,7 @@ import com.bchannel.kemmon.service.MailService;
 import com.bchannel.kemmon.service.UserService;
 import com.bchannel.kemmon.service.dto.UserDTO;
 import com.bchannel.kemmon.web.rest.vm.ManagedUserVM;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,16 +31,15 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
-import java.util.*;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.anyObject;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * Test class for the AccountResource REST controller.
@@ -152,7 +159,8 @@ public class AccountResourceIntTest {
             null,                   // createdBy
             null,                   // createdDate
             null,                   // lastModifiedBy
-            null                    // lastModifiedDate
+            null,                    // lastModifiedDate
+            null
         );
 
         restMvc.perform(
@@ -181,7 +189,8 @@ public class AccountResourceIntTest {
             null,                   // createdBy
             null,                   // createdDate
             null,                   // lastModifiedBy
-            null                    // lastModifiedDate
+            null,                   // lastModifiedDate
+            null
         );
 
         restUserMockMvc.perform(
@@ -210,7 +219,8 @@ public class AccountResourceIntTest {
             null,               // createdBy
             null,               // createdDate
             null,               // lastModifiedBy
-            null                // lastModifiedDate
+            null,                   // lastModifiedDate
+            null
         );
 
         restUserMockMvc.perform(
@@ -239,7 +249,8 @@ public class AccountResourceIntTest {
             null,               // createdBy
             null,               // createdDate
             null,               // lastModifiedBy
-            null                // lastModifiedDate
+            null,                   // lastModifiedDate
+            null
         );
 
         restUserMockMvc.perform(
@@ -269,12 +280,13 @@ public class AccountResourceIntTest {
             null,                   // createdBy
             null,                   // createdDate
             null,                   // lastModifiedBy
-            null                    // lastModifiedDate
+            null,                   // lastModifiedDate
+            null
         );
 
         // Duplicate login, different e-mail
         ManagedUserVM duplicatedUser = new ManagedUserVM(validUser.getId(), validUser.getLogin(), validUser.getPassword(), validUser.getLogin(), validUser.getLastName(),
-            "alicejr@example.com", true, validUser.getLangKey(), validUser.getAuthorities(), validUser.getCreatedBy(), validUser.getCreatedDate(), validUser.getLastModifiedBy(), validUser.getLastModifiedDate());
+            "alicejr@example.com", true, validUser.getLangKey(), validUser.getAuthorities(), validUser.getCreatedBy(), validUser.getCreatedDate(), validUser.getLastModifiedBy(), validUser.getLastModifiedDate(),null);
 
         // Good user
         restMvc.perform(
@@ -311,12 +323,13 @@ public class AccountResourceIntTest {
             null,                   // createdBy
             null,                   // createdDate
             null,                   // lastModifiedBy
-            null                    // lastModifiedDate
+            null,                   // lastModifiedDate
+            null
         );
 
         // Duplicate e-mail, different login
         ManagedUserVM duplicatedUser = new ManagedUserVM(validUser.getId(), "johnjr", validUser.getPassword(), validUser.getLogin(), validUser.getLastName(),
-            validUser.getEmail(), true, validUser.getLangKey(), validUser.getAuthorities(), validUser.getCreatedBy(), validUser.getCreatedDate(), validUser.getLastModifiedBy(), validUser.getLastModifiedDate());
+            validUser.getEmail(), true, validUser.getLangKey(), validUser.getAuthorities(), validUser.getCreatedBy(), validUser.getCreatedDate(), validUser.getLastModifiedBy(), validUser.getLastModifiedDate(),null);
 
         // Good user
         restMvc.perform(
@@ -352,7 +365,8 @@ public class AccountResourceIntTest {
             null,                   // createdBy
             null,                   // createdDate
             null,                   // lastModifiedBy
-            null                    // lastModifiedDate
+            null,                   // lastModifiedDate
+            null
         );
 
         restMvc.perform(
@@ -377,7 +391,7 @@ public class AccountResourceIntTest {
             "funky@example.com",    // e-mail
             true,                   // activated
             "en",                   // langKey
-            new HashSet<>(Arrays.asList(AuthoritiesConstants.USER))
+            new HashSet<>(Arrays.asList(AuthoritiesConstants.USER)),null
         );
 
         restUserMockMvc.perform(

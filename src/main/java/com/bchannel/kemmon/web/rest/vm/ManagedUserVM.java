@@ -1,12 +1,13 @@
 package com.bchannel.kemmon.web.rest.vm;
 
 import java.time.ZonedDateTime;
-
 import java.util.Set;
 
-import com.bchannel.kemmon.domain.User;
-import com.bchannel.kemmon.service.dto.UserDTO;
 import javax.validation.constraints.Size;
+
+import com.bchannel.kemmon.domain.User;
+import com.bchannel.kemmon.domain.enumeration.EnumTypeUser;
+import com.bchannel.kemmon.service.dto.UserDTO;
 
 /**
  * View Model extending the UserDTO, which is meant to be used in the user management UI.
@@ -44,8 +45,8 @@ public class ManagedUserVM extends UserDTO {
 
     public ManagedUserVM(Long id, String login, String password, String firstName, String lastName,
                          String email, boolean activated, String langKey, Set<String> authorities,
-                         String createdBy, ZonedDateTime createdDate, String lastModifiedBy, ZonedDateTime lastModifiedDate) {
-        super(login, firstName, lastName, email, activated, langKey, authorities);
+                         String createdBy, ZonedDateTime createdDate, String lastModifiedBy, ZonedDateTime lastModifiedDate,EnumTypeUser userType) {
+        super(login, firstName, lastName, email, activated, langKey, authorities,userType);
         this.id = id;
         this.createdBy = createdBy;
         this.createdDate = createdDate;
