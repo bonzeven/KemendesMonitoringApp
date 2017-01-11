@@ -52,6 +52,7 @@ spring:
         elasticsearch:
             cluster-name:
             cluster-nodes:
+            enabled: true
             properties:
                 path:
                   logs: target/elasticsearch/log

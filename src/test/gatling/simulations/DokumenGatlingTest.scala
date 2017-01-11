@@ -67,7 +67,7 @@ class DokumenGatlingTest extends Simulation {
             .exec(http("Create new dokumen")
             .post("/api/dokumen")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "dokumen_id":null, "dokumen_number":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null, "dokumen_id":null, "dokumen_number":"SAMPLE_TEXT", "dokumen_name":"SAMPLE_TEXT", "is_inputed":null, "inputed_date":"2020-01-01T00:00:00.000Z", "inputed_by":"0", "is_ppk_approved":null, "ppk_approved_date":"2020-01-01T00:00:00.000Z", "ppk_approved_by":"0", "is_spm_approved":null, "spm_approved_date":"2020-01-01T00:00:00.000Z", "spm_approved_by":"0", "is_kppn_approved":null, "kppn_approved_date":"2020-01-01T00:00:00.000Z", "kppn_approved_by":"0", "last_process":"SAMPLE_TEXT", "last_process_date":"2020-01-01T00:00:00.000Z", "last_modified_date":"2020-01-01T00:00:00.000Z", "last_modified_by":"0", "is_deleted":null, "deleted_date":"2020-01-01T00:00:00.000Z", "deleted_by":"0"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_dokumen_url"))).exitHereIfFailed
             .pause(10)

@@ -1,5 +1,7 @@
 package com.bchannel.kemmon.security;
 
+import com.bchannel.kemmon.domain.enumeration.EnumTypeUser;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -31,6 +33,31 @@ public final class SecurityUtils {
             }
         }
         return userName;
+    }
+
+    /**
+     * Get the UserType of the current user.
+     *
+     * @return the userType of the current user
+     */
+    public static String getCurrentUserTypeUserLogin() {
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        Authentication authentication = securityContext.getAuthentication();
+       // System.out.println("===authentication=========" + authentication);
+        EnumTypeUser userType = null;
+        if (authentication != null) {
+           // System.out.println("===principal===" + authentication.getPrincipal());
+            if (authentication.getPrincipal() instanceof CustomUser) {
+                CustomUser springSecurityUser = (CustomUser) authentication.getPrincipal();
+                userType = springSecurityUser.getUserType();
+            } else if (authentication.getPrincipal() instanceof String) {
+                userType = (EnumTypeUser) authentication.getPrincipal();
+            }
+        }
+        if (userType==null){
+            return "";
+        }else
+            return userType.toString();
     }
 
     /**

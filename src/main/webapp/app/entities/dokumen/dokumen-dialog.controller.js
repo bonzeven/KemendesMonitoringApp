@@ -12,6 +12,8 @@
 
         vm.dokumen = entity;
         vm.clear = clear;
+        vm.datePickerOpenStatus = {};
+        vm.openCalendar = openCalendar;
         vm.save = save;
 
         $timeout(function (){
@@ -19,6 +21,7 @@
         });
 
         function clear () {
+           // alert(vm.dokumen.dokumen_number);
             $uibModalInstance.dismiss('cancel');
         }
 
@@ -41,6 +44,16 @@
             vm.isSaving = false;
         }
 
+        vm.datePickerOpenStatus.inputed_date = false;
+        vm.datePickerOpenStatus.ppk_approved_date = false;
+        vm.datePickerOpenStatus.spm_approved_date = false;
+        vm.datePickerOpenStatus.kppn_approved_date = false;
+        vm.datePickerOpenStatus.last_process_date = false;
+        vm.datePickerOpenStatus.last_modified_date = false;
+        vm.datePickerOpenStatus.deleted_date = false;
 
+        function openCalendar (date) {
+            vm.datePickerOpenStatus[date] = true;
+        }
     }
 })();

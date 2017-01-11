@@ -25,6 +25,154 @@
                     ng-model="vm.dokumen.dokumen_number"
                      />
         </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="kemmonApp.dokumen.dokumen_name" for="field_dokumen_name">Dokumen Name</label>
+            <input type="text" class="form-control" name="dokumen_name" id="field_dokumen_name"
+                    ng-model="vm.dokumen.dokumen_name"
+                     />
+        </div>
+        <!--<div class="form-group">-->
+            <!--<label class="control-label" data-translate="kemmonApp.dokumen.is_inputed" for="field_is_inputed">Is Inputed</label>-->
+            <!--<input type="checkbox" class="form-control" name="is_inputed" id="field_is_inputed"-->
+                    <!--ng-model="vm.dokumen.is_inputed"-->
+                     <!--/>-->
+        <!--</div>-->
+        <div class="form-group">
+            <label class="control-label" data-translate="kemmonApp.dokumen.inputed_date" for="field_inputed_date">Inputed Date</label>
+                <div class="input-group">
+                    <input id="field_inputed_date" type="text" class="form-control" name="inputed_date" uib-datepicker-popup="{{dateformat}}" ng-model="vm.dokumen.inputed_date" is-open="vm.datePickerOpenStatus.inputed_date"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('inputed_date')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="kemmonApp.dokumen.inputed_by" for="field_inputed_by">Inputed By</label>
+            <input type="number" class="form-control" name="inputed_by" id="field_inputed_by"
+                    ng-model="vm.dokumen.inputed_by"
+                     />
+        </div>
+        <!--<div class="form-group">-->
+            <!--<label class="control-label" data-translate="kemmonApp.dokumen.is_ppk_approved" for="field_is_ppk_approved">Is Ppk Approved</label>-->
+            <!--<input type="checkbox" class="form-control" name="is_ppk_approved" id="field_is_ppk_approved"-->
+                    <!--ng-model="vm.dokumen.is_ppk_approved"-->
+                     <!--/>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label class="control-label" data-translate="kemmonApp.dokumen.ppk_approved_date" for="field_ppk_approved_date">Ppk Approved Date</label>-->
+                <!--<div class="input-group">-->
+                    <!--<input id="field_ppk_approved_date" type="text" class="form-control" name="ppk_approved_date" uib-datepicker-popup="{{dateformat}}" ng-model="vm.dokumen.ppk_approved_date" is-open="vm.datePickerOpenStatus.ppk_approved_date"-->
+                    <!--/>-->
+                    <!--<span class="input-group-btn">-->
+                        <!--<button type="button" class="btn btn-default" ng-click="vm.openCalendar('ppk_approved_date')"><i class="glyphicon glyphicon-calendar"></i></button>-->
+                    <!--</span>-->
+                <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label class="control-label" data-translate="kemmonApp.dokumen.ppk_approved_by" for="field_ppk_approved_by">Ppk Approved By</label>-->
+            <!--<input type="number" class="form-control" name="ppk_approved_by" id="field_ppk_approved_by"-->
+                    <!--ng-model="vm.dokumen.ppk_approved_by"-->
+                     <!--/>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label class="control-label" data-translate="kemmonApp.dokumen.is_spm_approved" for="field_is_spm_approved">Is Spm Approved</label>-->
+            <!--<input type="checkbox" class="form-control" name="is_spm_approved" id="field_is_spm_approved"-->
+                    <!--ng-model="vm.dokumen.is_spm_approved"-->
+                     <!--/>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label class="control-label" data-translate="kemmonApp.dokumen.spm_approved_date" for="field_spm_approved_date">Spm Approved Date</label>-->
+                <!--<div class="input-group">-->
+                    <!--<input id="field_spm_approved_date" type="text" class="form-control" name="spm_approved_date" uib-datepicker-popup="{{dateformat}}" ng-model="vm.dokumen.spm_approved_date" is-open="vm.datePickerOpenStatus.spm_approved_date"-->
+                    <!--/>-->
+                    <!--<span class="input-group-btn">-->
+                        <!--<button type="button" class="btn btn-default" ng-click="vm.openCalendar('spm_approved_date')"><i class="glyphicon glyphicon-calendar"></i></button>-->
+                    <!--</span>-->
+                <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label class="control-label" data-translate="kemmonApp.dokumen.spm_approved_by" for="field_spm_approved_by">Spm Approved By</label>-->
+            <!--<input type="number" class="form-control" name="spm_approved_by" id="field_spm_approved_by"-->
+                    <!--ng-model="vm.dokumen.spm_approved_by"-->
+                     <!--/>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label class="control-label" data-translate="kemmonApp.dokumen.is_kppn_approved" for="field_is_kppn_approved">Is Kppn Approved</label>-->
+            <!--<input type="checkbox" class="form-control" name="is_kppn_approved" id="field_is_kppn_approved"-->
+                    <!--ng-model="vm.dokumen.is_kppn_approved"-->
+                     <!--/>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label class="control-label" data-translate="kemmonApp.dokumen.kppn_approved_date" for="field_kppn_approved_date">Kppn Approved Date</label>-->
+                <!--<div class="input-group">-->
+                    <!--<input id="field_kppn_approved_date" type="text" class="form-control" name="kppn_approved_date" uib-datepicker-popup="{{dateformat}}" ng-model="vm.dokumen.kppn_approved_date" is-open="vm.datePickerOpenStatus.kppn_approved_date"-->
+                    <!--/>-->
+                    <!--<span class="input-group-btn">-->
+                        <!--<button type="button" class="btn btn-default" ng-click="vm.openCalendar('kppn_approved_date')"><i class="glyphicon glyphicon-calendar"></i></button>-->
+                    <!--</span>-->
+                <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label class="control-label" data-translate="kemmonApp.dokumen.kppn_approved_by" for="field_kppn_approved_by">Kppn Approved By</label>-->
+            <!--<input type="number" class="form-control" name="kppn_approved_by" id="field_kppn_approved_by"-->
+                    <!--ng-model="vm.dokumen.kppn_approved_by"-->
+                     <!--/>-->
+        <!--</div>-->
+        <div class="form-group">
+            <label class="control-label" data-translate="kemmonApp.dokumen.last_process" for="field_last_process">Last Process</label>
+            <input type="text" class="form-control" name="last_process" id="field_last_process"
+                    ng-model="vm.dokumen.last_process"
+                     />
+        </div>
+        <!--<div class="form-group">-->
+            <!--<label class="control-label" data-translate="kemmonApp.dokumen.last_process_date" for="field_last_process_date">Last Process Date</label>-->
+                <!--<div class="input-group">-->
+                    <!--<input id="field_last_process_date" type="text" class="form-control" name="last_process_date" uib-datepicker-popup="{{dateformat}}" ng-model="vm.dokumen.last_process_date" is-open="vm.datePickerOpenStatus.last_process_date"-->
+                    <!--/>-->
+                    <!--<span class="input-group-btn">-->
+                        <!--<button type="button" class="btn btn-default" ng-click="vm.openCalendar('last_process_date')"><i class="glyphicon glyphicon-calendar"></i></button>-->
+                    <!--</span>-->
+                <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label class="control-label" data-translate="kemmonApp.dokumen.last_modified_date" for="field_last_modified_date">Last Modified Date</label>-->
+                <!--<div class="input-group">-->
+                    <!--<input id="field_last_modified_date" type="text" class="form-control" name="last_modified_date" uib-datepicker-popup="{{dateformat}}" ng-model="vm.dokumen.last_modified_date" is-open="vm.datePickerOpenStatus.last_modified_date"-->
+                    <!--/>-->
+                    <!--<span class="input-group-btn">-->
+                        <!--<button type="button" class="btn btn-default" ng-click="vm.openCalendar('last_modified_date')"><i class="glyphicon glyphicon-calendar"></i></button>-->
+                    <!--</span>-->
+                <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label class="control-label" data-translate="kemmonApp.dokumen.last_modified_by" for="field_last_modified_by">Last Modified By</label>-->
+            <!--<input type="number" class="form-control" name="last_modified_by" id="field_last_modified_by"-->
+                    <!--ng-model="vm.dokumen.last_modified_by"-->
+                     <!--/>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label class="control-label" data-translate="kemmonApp.dokumen.is_deleted" for="field_is_deleted">Is Deleted</label>-->
+            <!--<input type="checkbox" class="form-control" name="is_deleted" id="field_is_deleted"-->
+                    <!--ng-model="vm.dokumen.is_deleted"-->
+                     <!--/>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label class="control-label" data-translate="kemmonApp.dokumen.deleted_date" for="field_deleted_date">Deleted Date</label>-->
+                <!--<div class="input-group">-->
+                    <!--<input id="field_deleted_date" type="text" class="form-control" name="deleted_date" uib-datepicker-popup="{{dateformat}}" ng-model="vm.dokumen.deleted_date" is-open="vm.datePickerOpenStatus.deleted_date"-->
+                    <!--/>-->
+                    <!--<span class="input-group-btn">-->
+                        <!--<button type="button" class="btn btn-default" ng-click="vm.openCalendar('deleted_date')"><i class="glyphicon glyphicon-calendar"></i></button>-->
+                    <!--</span>-->
+                <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label class="control-label" data-translate="kemmonApp.dokumen.deleted_by" for="field_deleted_by">Deleted By</label>-->
+            <!--<input type="number" class="form-control" name="deleted_by" id="field_deleted_by"-->
+                    <!--ng-model="vm.dokumen.deleted_by"-->
+                     <!--/>-->
+        <!--</div>-->
 
     </div>
     <div class="modal-footer">

@@ -1,22 +1,22 @@
 package com.bchannel.kemmon.service.impl;
 
-import com.bchannel.kemmon.service.DokumenService;
+import javax.inject.Inject;
+
 import com.bchannel.kemmon.domain.Dokumen;
+import com.bchannel.kemmon.domain.enumeration.EnumDocProcess;
 import com.bchannel.kemmon.repository.DokumenRepository;
 import com.bchannel.kemmon.repository.search.DokumenSearchRepository;
+import com.bchannel.kemmon.security.SecurityUtils;
+import com.bchannel.kemmon.service.DokumenService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
  * Service Implementation for managing Dokumen.
@@ -26,7 +26,7 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
 public class DokumenServiceImpl implements DokumenService{
 
     private final Logger log = LoggerFactory.getLogger(DokumenServiceImpl.class);
-    
+
     @Inject
     private DokumenRepository dokumenRepository;
 
@@ -48,14 +48,25 @@ public class DokumenServiceImpl implements DokumenService{
 
     /**
      *  Get all the dokumen.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public Page<Dokumen> findAll(Pageable pageable) {
         log.debug("Request to get all Dokumen");
-        Page<Dokumen> result = dokumenRepository.findAll(pageable);
+
+       // Page<Dokumen> result = dokumenRepository.findAll(pageable);
+
+        String userType = SecurityUtils.getCurrentUserTypeUserLogin();
+        log.debug("User with type " + userType);
+        int processNumOrder = EnumDocProcess.valueOf(userType).ordinal()-1;
+        if(processNumOrder < 0) {
+            userType = "";
+        }else{
+            userType = EnumDocProcess.values[processNumOrder].name();
+        }
+        Page<Dokumen> result = dokumenRepository.findAllByLastProcess(userType, pageable);
         return result;
     }
 
@@ -65,7 +76,7 @@ public class DokumenServiceImpl implements DokumenService{
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public Dokumen findOne(Long id) {
         log.debug("Request to get Dokumen : {}", id);
         Dokumen dokumen = dokumenRepository.findOne(id);

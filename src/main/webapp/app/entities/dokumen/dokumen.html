@@ -38,6 +38,26 @@
                     <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="dokumen_id"><span data-translate="kemmonApp.dokumen.dokumen_id">Dokumen Id</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="dokumen_number"><span data-translate="kemmonApp.dokumen.dokumen_number">Dokumen Number</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="dokumen_name"><span data-translate="kemmonApp.dokumen.dokumen_name">Dokumen Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <!--<th jh-sort-by="is_inputed"><span data-translate="kemmonApp.dokumen.is_inputed">Is Inputed</span> <span class="glyphicon glyphicon-sort"></span></th>-->
+                    <th jh-sort-by="inputed_date"><span data-translate="kemmonApp.dokumen.inputed_date">Inputed Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="inputed_by"><span data-translate="kemmonApp.dokumen.inputed_by">Inputed By</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <!--<th jh-sort-by="is_ppk_approved"><span data-translate="kemmonApp.dokumen.is_ppk_approved">Is Ppk Approved</span> <span class="glyphicon glyphicon-sort"></span></th>-->
+                    <!--<th jh-sort-by="ppk_approved_date"><span data-translate="kemmonApp.dokumen.ppk_approved_date">Ppk Approved Date</span> <span class="glyphicon glyphicon-sort"></span></th>-->
+                    <!--<th jh-sort-by="ppk_approved_by"><span data-translate="kemmonApp.dokumen.ppk_approved_by">Ppk Approved By</span> <span class="glyphicon glyphicon-sort"></span></th>-->
+                    <!--<th jh-sort-by="is_spm_approved"><span data-translate="kemmonApp.dokumen.is_spm_approved">Is Spm Approved</span> <span class="glyphicon glyphicon-sort"></span></th>-->
+                    <!--<th jh-sort-by="spm_approved_date"><span data-translate="kemmonApp.dokumen.spm_approved_date">Spm Approved Date</span> <span class="glyphicon glyphicon-sort"></span></th>-->
+                    <!--<th jh-sort-by="spm_approved_by"><span data-translate="kemmonApp.dokumen.spm_approved_by">Spm Approved By</span> <span class="glyphicon glyphicon-sort"></span></th>-->
+                    <!--<th jh-sort-by="is_kppn_approved"><span data-translate="kemmonApp.dokumen.is_kppn_approved">Is Kppn Approved</span> <span class="glyphicon glyphicon-sort"></span></th>-->
+                    <!--<th jh-sort-by="kppn_approved_date"><span data-translate="kemmonApp.dokumen.kppn_approved_date">Kppn Approved Date</span> <span class="glyphicon glyphicon-sort"></span></th>-->
+                    <!--<th jh-sort-by="kppn_approved_by"><span data-translate="kemmonApp.dokumen.kppn_approved_by">Kppn Approved By</span> <span class="glyphicon glyphicon-sort"></span></th>-->
+                    <th jh-sort-by="last_process"><span data-translate="kemmonApp.dokumen.last_process">Last Process</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="last_process_date"><span data-translate="kemmonApp.dokumen.last_process_date">Last Process Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <!--<th jh-sort-by="last_modified_date"><span data-translate="kemmonApp.dokumen.last_modified_date">Last Modified Date</span> <span class="glyphicon glyphicon-sort"></span></th>-->
+                    <!--<th jh-sort-by="last_modified_by"><span data-translate="kemmonApp.dokumen.last_modified_by">Last Modified By</span> <span class="glyphicon glyphicon-sort"></span></th>-->
+                    <!--<th jh-sort-by="is_deleted"><span data-translate="kemmonApp.dokumen.is_deleted">Is Deleted</span> <span class="glyphicon glyphicon-sort"></span></th>-->
+                    <!--<th jh-sort-by="deleted_date"><span data-translate="kemmonApp.dokumen.deleted_date">Deleted Date</span> <span class="glyphicon glyphicon-sort"></span></th>-->
+                    <!--<th jh-sort-by="deleted_by"><span data-translate="kemmonApp.dokumen.deleted_by">Deleted By</span> <span class="glyphicon glyphicon-sort"></span></th>-->
                     <th></th>
                 </tr>
             </thead>
@@ -46,6 +66,26 @@
                     <td><a ui-sref="dokumen-detail({id:dokumen.id})">{{dokumen.id}}</a></td>
                     <td>{{dokumen.dokumen_id}}</td>
                     <td>{{dokumen.dokumen_number}}</td>
+                    <td>{{dokumen.dokumen_name}}</td>
+                    <!--<td>{{dokumen.is_inputed}}</td>-->
+                        <td>{{dokumen.inputed_date | date:'mediumDate'}}</td>
+                    <td>{{dokumen.inputed_by}}</td>
+                    <!--<td>{{dokumen.is_ppk_approved}}</td>-->
+                        <!--<td>{{dokumen.ppk_approved_date | date:'mediumDate'}}</td>-->
+                    <!--<td>{{dokumen.ppk_approved_by}}</td>-->
+                    <!--<td>{{dokumen.is_spm_approved}}</td>-->
+                        <!--<td>{{dokumen.spm_approved_date | date:'mediumDate'}}</td>-->
+                    <!--<td>{{dokumen.spm_approved_by}}</td>-->
+                    <!--<td>{{dokumen.is_kppn_approved}}</td>-->
+                        <!--<td>{{dokumen.kppn_approved_date | date:'mediumDate'}}</td>-->
+                    <!--<td>{{dokumen.kppn_approved_by}}</td>-->
+                    <td>{{dokumen.lastProcess}}</td>
+                        <td>{{dokumen.last_process_date | date:'mediumDate'}}</td>
+                        <!--<td>{{dokumen.last_modified_date | date:'mediumDate'}}</td>-->
+                    <!--<td>{{dokumen.last_modified_by}}</td>-->
+                    <!--<td>{{dokumen.is_deleted}}</td>-->
+                        <!--<td>{{dokumen.deleted_date | date:'mediumDate'}}</td>-->
+                    <!--<td>{{dokumen.deleted_by}}</td>-->
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

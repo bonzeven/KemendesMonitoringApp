@@ -9,6 +9,86 @@
         {
             "fieldName": "dokumen_number",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "dokumen_name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "is_inputed",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "inputed_date",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "inputed_by",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "is_ppk_approved",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "ppk_approved_date",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "ppk_approved_by",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "is_spm_approved",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "spm_approved_date",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "spm_approved_by",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "is_kppn_approved",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "kppn_approved_date",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "kppn_approved_by",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "last_process",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "last_process_date",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "last_modified_date",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "last_modified_by",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "is_deleted",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "deleted_date",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "deleted_by",
+            "fieldType": "Integer"
         }
     ],
     "changelogDate": "20170102060059",
